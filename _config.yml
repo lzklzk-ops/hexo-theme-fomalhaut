@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Demo
-subtitle:
-description: "一个基于 Hexo + Fomalhaut 主题的演示站点"
-keywords: "Hexo,Butterfly,Fomalhaut,博客,主题,卡片式UI"
-author: Demo
+title: 无敌
+subtitle: 韬韬站点
+description: "打游戏和小日常"
+keywords: "博客"
+author: 韬
 language: zh-CN
 timezone: ""
 
@@ -18,7 +18,7 @@ abbrlink:
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://example.com/
+url: https://lzklzk-ops.github.io/
 permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -35,9 +35,9 @@ code_dir: downloads/code
 i18n_dir: :lang
 # 指定不渲染某些页面
 skip_render:
-  - 'js/tag-map/*' # leaflet / proj4 第三方库原文件，原样复制，不做 Nunjucks 渲染
-  - 'js/ai-chat.js' # AI 助手前端本体（含大段 CSS/JS 字面量），原样复制，不做 Nunjucks 渲染
-  - 'box/astronomy/voyager.html' # 旅行者号交互星图，是完整独立页面（自带样式与脚本），由 index.md 用 iframe 引入，原样复制
+  - "js/tag-map/*" # leaflet / proj4 第三方库原文件，原样复制，不做 Nunjucks 渲染
+  - "js/ai-chat.js" # AI 助手前端本体（含大段 CSS/JS 字面量），原样复制，不做 Nunjucks 渲染
+  - "box/astronomy/voyager.html" # 旅行者号交互星图，是完整独立页面（自带样式与脚本），由 index.md 用 iframe 引入，原样复制
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -134,7 +134,7 @@ theme: fomalhaut
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   - type: git
-    repository: https://github.com/yourname/yourname.github.io.git # 这个Github仓库用自动部署即可
+    repository: https://github.com/lzklzk-ops/lzklzk-ops.github.io.git # 这个Github仓库用自动部署即可
     branch: main
   - type: baidu_url_submitter
   # - type: git

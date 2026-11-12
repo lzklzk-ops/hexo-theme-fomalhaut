@@ -31,6 +31,36 @@
 
 document.addEventListener('pjax:complete', tonav);
 document.addEventListener('DOMContentLoaded', tonav);
+document.addEventListener('pjax:complete', syncActiveMenu);
+document.addEventListener('DOMContentLoaded', syncActiveMenu);
+
+// Keep the active marker tied to the rendered URL, including PJAX navigation.
+function syncActiveMenu() {
+  var links = document.querySelectorAll('#nav .menus_items > .menus_item > a.site-page[href]');
+  if (!links.length) return;
+  var current = window.location.pathname.replace(/\/+$/, '') || '/';
+  var matched = null;
+  links.forEach(function (link) {
+    var url;
+    try { url = new URL(link.href, window.location.href); } catch (err) { return; }
+    var path = url.pathname.replace(/\/+$/, '') || '/';
+    var active = path === current || (path !== '/' && current.indexOf(path + '/') === 0);
+    link.classList.toggle('active', active);
+    if (active && !matched) matched = link;
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+  if (!matched) {
+    var home = Array.prototype.find.call(links, function (link) {
+      try { return new URL(link.href, window.location.href).pathname.replace(/\/+$/, '') === ''; }
+      catch (err) { return false; }
+    });
+    if (home) {
+      home.classList.add('active');
+      home.setAttribute('aria-current', 'page');
+    }
+  }
+}
 //响应pjax
 function tonav() {
   // Replace only this module's listener; keep other scroll handlers intact.
@@ -108,13 +138,19 @@ function getDistance(e1, n1, e2, n2) {
 function showWelcomeLoading() {
   try {
     let el = document.getElementById("welcome-info");
-    if (el && !el.innerHTML.trim()) el.innerHTML = '<b><center>欢迎信息正在加载中...</center></b>';
+    if (el && !el.innerHTML.trim()) {
+      el.dataset.welcomeState = "loading";
+      el.innerHTML = '<b><center>欢迎信息正在加载中...</center></b>';
+    }
   } catch (err) {
     // console.log("Pjax无法获取#welcome-info元素🙄🙄🙄")
   }
 }
 
 function showWelcome() {
+  // 自定义欢迎内容由 _config.fomalhaut.yml 的 aside.card_announcement.welcome_info 提供。
+  let welcomeInfo = document.getElementById("welcome-info");
+  if (welcomeInfo && welcomeInfo.innerHTML.trim()) return;
 
   //数据还没回来（接口慢或被拦截）就先显示加载提示
   if (!ipLoacation || !ipLoacation.result || !ipLoacation.result.location) {
@@ -143,6 +179,7 @@ function showWelcome() {
 
   try {
     //自定义文本和需要放的位置
+    welcomeInfo.dataset.welcomeState = "ready";
     document.getElementById("welcome-info").innerHTML =
       `<b><center>🎉 欢迎信息 🎉</center>来自 <span style="color:var(--blue-custom)">${pos}</span> 的访客，${timeChange}，现在是 <span style="color:var(--blue-custom)">${clock}</span>，你目前距站长约 <span style="color:var(--blue-custom)">${dist}</span> 公里，IP地址：<span style="color:var(--blue-custom)">${ipHtml}</span></b>`;
   } catch (err) {
@@ -162,6 +199,7 @@ setTimeout(function () {
   try {
     let el = document.getElementById("welcome-info");
     if (el && el.innerHTML.indexOf("正在加载中") > -1) {
+      el.dataset.welcomeState = "error";
       el.innerHTML = '<b><center>欢迎信息加载失败，请刷新重试🥺</center></b>';
     }
   } catch (err) { }

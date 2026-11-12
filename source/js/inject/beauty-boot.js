@@ -24,6 +24,15 @@
   // 新增互动偏好：首帧就隐藏关闭的挂件（猫咪由 deferred 脚本创建）。
   d.classList.toggle('beauty-neko-off', ls('nekoOn') === '0');
   // 1) 自定义壁纸
+  // 背景主题升级迁移：旧版本把 picsum/本地图写进了 blogbg，会覆盖配置里的在线动漫图。
+  // 只执行一次，清掉旧背景偏好；用户之后仍可在“美化设置”里重新选择自定义背景。
+  var BG_THEME_VERSION = "20261109-anime-online";
+  if (ls("animeBgThemeVersion") !== BG_THEME_VERSION) {
+    try {
+      localStorage.setItem("blogbg", "default");
+      localStorage.setItem("animeBgThemeVersion", BG_THEME_VERSION);
+    } catch (e) { /* 隐私模式下无法写入时继续使用配置默认值 */ }
+  }
   var bg = def(ls("blogbg"), "default").replace(/^\s+|\s+$/g, "");
   if (bg !== "default" && /^(#|url\(|linear-gradient|radial-gradient|https?:)/.test(bg)) {
     tag("defineBg", ":root{--default-bg:" + bg + SAME + bg + ";--mobileday-bg:" + bg + ";--mobilenight-bg:" + bg + ";}");

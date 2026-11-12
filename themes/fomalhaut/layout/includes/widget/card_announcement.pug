@@ -10,5 +10,5 @@ if theme.aside.card_announcement.enable
       //-   svg.icon(style="height:23px;width:23px;fill:currentColor;position:relative;top:3px;animation: ccc 12s linear infinite;")
       //-     use(xlink:href='#icon-shezhi')
     .announcement_content!= theme.aside.card_announcement.content
-    //- 添加欢迎访客的信息
-    #welcome-info
+    //- 欢迎信息由 source/js/modules/nav.js 写入；保留此节点以便编辑/显示加载状态
+    #welcome-info= theme.aside.card_announcement.welcome_info || ''

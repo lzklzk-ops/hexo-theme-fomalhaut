@@ -4,23 +4,14 @@
 
 menu:
   首页: / || icon-home || faa-tada
-  文章 || icon--article || faa-tada || hide:
-    归档: /archives/ || icon-guidang1 || faa-tada
-    文章统计: /tags/ || icon-shujutongji1 || faa-tada
-    随便逛逛: javascript:randomPost(); || icon-zuji1 || faa-tada
-  八宝箱 || icon-xiangzi || faa-tada || hide:
-    八音盒: /life/music/ || icon-yinle || faa-tada
-    画廊: /box/gallery/ || icon-tubiaozhizuomoban || faa-tada
-    天文馆: /box/astronomy/ || icon-wangyuanjing || faa-tada
-    网址导航: /box/nav/ || icon-zhifengche || faa-tada
-  社交 || icon-shejiaoxinxi || faa-tada || hide:
-    朋友圈: /social/fcircle/ || icon-pengyouquan || faa-tada
-    留言板: /comments/ || icon-liuyan || faa-tada
-    友人帐: /social/link/ || icon-lianjie || faa-tada
-  网站 || icon-wangye || faa-tada || hide:
-    网站统计: /site/census/ || icon--tongjibiao || faa-tada
-    旧时光: /site/time/ || icon-xianxingshalou || faa-tada
-    关于: /personal/about/ || icon-paperplane || faa-tada
+  八音盒: /life/music/ || icon-yinle || faa-tada
+  画廊: /box/gallery/ || icon-tubiaozhizuomoban || faa-tada
+  天文馆: /box/astronomy/ || icon-wangyuanjing || faa-tada
+  归档: /archives/ || icon-guidang1 || faa-tada
+  友人帐: /social/link/ || icon-lianjie || faa-tada
+  网站统计: /site/census/ || icon--tongjibiao || faa-tada
+  旧时光: /site/time/ || icon-xianxingshalou || faa-tada
+  关于: /personal/about/ || icon-paperplane || faa-tada
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -45,10 +36,10 @@ copy:
 #   icon: link || the description
 social:
   # 格式： 名称: 链接 || 图标类名 || 动画类名
-  Github: https://github.com/yourname || icon-github || faa-tada
-  B站: https://space.bilibili.com/12345678 || icon-bilibili || faa-tada
-  邮箱: mailto:you@example.com || icon-youxiang || faa-tada
-  # 微信: /assets/wechat-qr.webp || icon-weixin || faa-tada
+  Github: https://github.com/lzklzk-ops || icon-github || faa-tada
+  # B站: https://space.bilibili.com/12345678 || icon-bilibili || faa-tada
+  邮箱: mailto:2967192281@qq,com || icon-youxiang || faa-tada
+  微信: /assets/avatar.webp || icon-weixin || faa-tada
   # RSS: /atom.xml || icon-RSS || faa-tada
 
   # 用 iconfont 图标的写法：
@@ -115,13 +106,14 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img:
+# 在线二次元横屏图：偏暗色、高对比、战斗感；服务端会随机返回动漫壁纸。
+index_img: /assets/pictrue/p1.jpg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /assets/pictrue/p2.jpg
 
 # The banner image of archive page
-archive_img:
+archive_img: /assets/pictrue/p3.jpg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
@@ -546,7 +538,8 @@ comments:
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: true
+  # 评论区直接加载，避免滚动触发后才初始化；Twikoo 后端地址见下方 twikoo.envId。
+  lazyload: false
   count: false # Display comment count in post's top_img
   card_post_count: false # Display comment count in Home Page
 
@@ -629,7 +622,8 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId: https://comment.example.com
+  # 必须替换为你实际部署的 Twikoo 服务地址，否则前端会显示 status 0。
+  envId: https://twikoo-orcin-seven.vercel.app
   region:
   visitor: false
   option:
@@ -697,7 +691,7 @@ crisp:
 footer:
   owner:
     enable: true
-    since: 2022
+    since: 2026
   custom_text:
   copyright: false # Copyright of theme and framework
 
@@ -926,8 +920,8 @@ subtitle:
   source: false
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub:
-    - "Welcome to DemoのTiny Home!🤣🤣🤣"
-    - "Hope you have a nice day!🍭🍭🍭"
+    - "欢迎来到我的个人博客"
+    - "lalalalala"
 
 # Loading Animation (加載動畫)
 # preloader: false
@@ -952,26 +946,16 @@ aside:
     category: true
   card_author:
     enable: true
-    description:
+    description: 韬
     button:
       enable: true
       icon: # fab fa-github
       text: Github主页
-      link: https://github.com/yourname
+      link: https://github.com/lzklzk-ops
+
   card_announcement:
     enable: true
-    content: |
-      <div class="anno2">
-        <div class="a-sect">
-          <div class="a-row a-flat"><span class="a-lb">关于这个模板</span></div>
-          <p style="margin:.4em 0 0">这是一个演示站点：把 <code>_config.yml</code> 与 <code>_config.fomalhaut.yml</code> 里的站点名、域名、头像、友链换成你自己的，再写几篇文章，就能搭起自己的小站。</p>
-        </div>
-        <div class="a-sect">
-          <div class="a-row a-flat"><span class="a-lb">常用入口</span></div>
-          <div class="a-row"><span class="a-lb">文档</span><a class="a-chip" href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener"><i class="a-dot"></i>Hexo 文档</a><span class="a-note">官方</span></div>
-          <div class="a-row a-sub"><span class="a-lb"></span><a class="a-chip" href="https://github.com/fomalhaut1998/hexo-theme-fomalhaut" target="_blank" rel="noopener"><i class="a-dot"></i>主题仓库</a><span class="a-note">GitHub</span></div>
-        </div>
-      </div>
+    content: 欢迎来到我的小站
 
   card_recent_post:
     enable: false
@@ -1207,7 +1191,7 @@ inject:
     - <style id="transPercent"></style> # 透明度调节
     - <style id="bgFilterParam"></style> # 背景滤镜
     - <span id="fps" aria-hidden="true"></span> # 帧率检测（纯装饰，读屏不播报）
-    - <style id="defineBg">:root{--default-bg:url(https://picsum.photos/id/1015/1920/1080);--darkmode-bg:url(https://picsum.photos/id/1044/1920/1080);--mobileday-bg:url(https://picsum.photos/id/1018/1920/1080);--mobilenight-bg:url(https://picsum.photos/id/1039/1920/1080);}</style> # 默认背景（内联兜底：即使 fomal.js 未执行，首屏也有背景图；运行时会被 fomal.js 覆盖）
+    - <style id="defineBg">:root{--default-bg:url(/assets/pictrue/p4.jpg);--darkmode-bg:url(/assets/pictrue/p5.jpg);--mobileday-bg:url(/assets/pictrue/p8.jpg);--mobilenight-bg:url(/assets/pictrue/p7.jpg);}</style> # 默认背景：使用站内图片，避免随机图接口变慢；不同模式仍保持独立图片
     # 注意：夜间那张的地址必须与 source/js/modules/settings.js 的 resetBg_() 逐字一致 ——
     # 运行时覆盖前浏览器已按这里的值下过一份，URL 不一致就会同一张图下两份。
     - <style id="menu_shadow"></style> # 菜单发光样式
@@ -1219,9 +1203,9 @@ inject:
     # 上面那些空的 <style id="themeColor"></style> / #rightSide / #transPercent / #bgFilterParam
     # / #defineBg / #menu_shadow / #nav-display / #aside-show / #aside-pos 是"运行时空槽"：
     # 由右下角美化面板的 JS 在运行时往里写 CSS，不能删、不能挪位置。
-    - <link rel="stylesheet" href="/css/site-inject.css?v=20261015-fps4">
+    - <link rel="stylesheet" href="/css/site-inject.css?v=20261111-music3">
     # 导航磨砂底色与工具区间距（独立覆盖；保留主题导航显示/折叠逻辑）
-    - <link rel="stylesheet" href="/css/navigation.css?v=20261011-nav3">
+    - <link rel="stylesheet" href="/css/navigation.css?v=20261111-active2">
     # ── 手机端抽屉菜单改版（站点独立样式，不改主题源码）────────────────────────
     # source/css/mobile-drawer.css：#sidebar-menus 的层级 / 统计胶囊 / 图标底衬 /
     # 手风琴二级菜单 / 极光底色 / 深色适配，配色全部由 --theme-color 派生。
@@ -1260,11 +1244,12 @@ inject:
     # source/js/inject/ping-route-boot.js 放可调参数；ping-route.js 在每条线路胶囊后
     # 插一个 <span class="a-ms">，显示「本机 → 该线路」一次网络往返（如 82ms）。
     # 全部在 window.load 之后错开探测，不进首屏关键路径；样式在 site-inject.css 的 annoV2 块。
+    # 两个脚本使用 defer：保留 boot → ping-route 的执行顺序，同时不阻塞 head 解析。
     # 回滚：删掉下面这两行即可（不需要清 public/）。
-    - <script src="/js/inject/ping-route-boot.js"></script> # 延时探测参数（必须在 ping-route.js 之前执行）
-    - <script src="/js/inject/ping-route.js"></script> # 公告栏线路延时徽标
+    - <script defer src="/js/inject/ping-route-boot.js"></script> # 延时探测参数（必须在 ping-route.js 之前执行）
+    - <script defer src="/js/inject/ping-route.js"></script> # 公告栏线路延时徽标
     - <script src="/js/inject/beauty-boot.js?v=20261015-solid3"></script> # 美化模块首屏预置（原内联 beautyBoot）
-    - <script src="/js/inject/right-menu-state-boot.js"></script> # 侧栏「右键模式」按钮状态同步
+    - <script defer src="/js/inject/right-menu-state-boot.js"></script> # 侧栏「右键模式」按钮状态同步
     # ── 全站日间 / 夜间首屏预置（站点独立脚本，不改主题源码）────────────────────
     # source/js/inject/daynight-boot.js：访客没手动选过深浅色时，按当天真实日出日落定模式（有手动
     #   选择就完全不动）。修「夜间模式点『随便逛逛』跳转后变回白天」—— 那段逻辑原本只挂在日历卡上，
@@ -1317,15 +1302,14 @@ inject:
     #   没有这段 JSON 时卡片照常渲染、只是少了分类与时长。数据构建期算好，页面零额外请求。
     # 改 css/js 记得把下面两个 ?v= 一起提版本。回滚：删掉下面两行即可
     # （配置备份 bak/20261012-archive-cards/before/_config.fomalhaut.yml）。
-    - <link rel="stylesheet" href="/css/archive-page.css?v=20261018-scrollfix">
+    - <link rel="stylesheet" href="/css/archive-page.css?v=20261110-wave1">
     - <script defer src="/js/inject/archive-page.js?v=20261018-scrollfix"></script>
 
   bottom:
     - <script defer charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script> # 51la统计（+defer 解除阻塞）
     - <script defer src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script> # 灵雀监控（+defer 解除阻塞）
     - <script defer src="/js/51la.js"></script> # 统计
-    - <script src="https://registry.npmmirror.com/jquery/3.6.0/files/dist/jquery.min.js"></script> # jQuery
-    - <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script> # jQuery 本地兜底（CDN 失效时不至于让 fomal.js 整个中断）
+    - <script defer src="/js/jquery.min.js"></script> # jQuery 使用站内副本并延后执行，避免外部 CDN 阻塞首屏
     # - <script async src="https://registry.npmmirror.com/vue/2.6.14/files/dist/vue.min.js"></script> # VUE（92KB，15 处 $notify 已由 /js/notify.js 承担，故移除）
     # - <script async src="https://registry.npmmirror.com/element-ui/2.15.7/files/lib/index.js"></script> # ElementUI（577KB，同上，已移除）
     - <script async src="https://registry.npmmirror.com/clipboard/2.0.10/files/dist/clipboard.min.js"></script> # 分享按钮依赖
@@ -1350,7 +1334,7 @@ inject:
     - <script defer src="/js/modules/snow.js?v=20261010-snow1"></script> # 自然雪片与底部薄积雪
     - <script defer src="/js/modules/effects.js?v=20261010-snow1"></script> # 星空/表情放大
     - <script defer src="/js/modules/reading.js?v=20261015-fps2"></script> # 阅读进度条/FPS
-    - <script defer src="/js/modules/nav.js?v=20261005-scroll1"></script> # 导航栏标题/首屏欢迎语/随便逛逛/分享
+    - <script defer src="/js/modules/nav.js?v=20261111-active2"></script> # 导航栏标题/首屏欢迎语/随便逛逛/分享
     - <script defer src="/js/modules/cursor.js?v=20261015-fps2"></script> # 小猫咪/右键菜单/听话鼠标
     - <script defer src="/js/modules/footer-time.js?v=20261006"></script> # 页脚计时器
     - <script defer src="/js/modules/appearance-fonts.js?v=20261010-preview1"></script> # 字体共用预览与加载保护
@@ -1364,6 +1348,7 @@ inject:
     - <script defer src="/js/author-status.js"></script> # 侧栏头像状态胶囊：按时间/节假日自动切换（放假/上班/下班/睡觉）
     - <script defer src="/js/stats.js?v=20261005"></script> # 文章统计页（/tags/）：emoji 标题拆成分节头 + 三张 echarts 跟随主题色/明暗模式
     - <script defer src="/js/footer-music.js?v=20261005"></script> # 页脚「猜你想看」右下空位补一条「听点音乐」→ /life/music/（八音盒）
+    - <script defer src="/js/inject/music-autoplay.js?v=20261112"></script> # 八音盒进入后自动播放；浏览器拦截时在首次操作后启动
     - <script defer src="/js/pjax-guard.js?v=20261005"></script> # 修 pjax 选择器不匹配：/tags/ 图表容器 id 导致换页退回整页刷新 + 加载遮罩一直转圈
     - <script defer src="/js/inject/search-lazy.js?v=20261011b"></script> # Algolia 搜索按需加载：空闲预取 + 点开才执行（省 88KB 压缩流量 / 277KB 解析，见 source/js/inject/search-lazy.js）
     - <script src="/js/inject/scroll-gap-fix.js?v=20261011"></script> # 锚点跳转补偿：常驻顶栏留 70px
@@ -1562,22 +1547,23 @@ lantern:
 # 注意：本文件已被 git 跟踪，Key 写在这里会进仓库 —— 建议把 Key 单独放到
 #       站点根目录的 .ai-chat-key（已加进 .gitignore），下面 api_key 留空即可。
 ai_chat:
-  enable: true                 # 总开关：false 则不注入按钮和面板
+  enable: true # 总开关：false 则不注入按钮和面板
   api_base: https://api.deepseek.com
-  api_key: ''                  # 直接写 Key（不推荐，会进 git）
-  api_key_file: .ai-chat-key   # 或从文件读；相对站点根目录
-  model: deepseek-chat    # 换模型只改这一行。deepseek-flash 是「思考型」模型：它先吐一大段 reasoning，
-                          # 这段也要算进 max_tokens；问它「代码写得怎样」这类需要琢磨的问题时，思考会把额度吃光、
-                          # 正文一个字都吐不出来（流正常结束但 finish_reason=length）。页面助手追求快而稳，用 chat。
+  api_key: "" # 直接写 Key（不推荐，会进 git）
+  api_key_file: .ai-chat-key # 或从文件读；相对站点根目录
+  model:
+    deepseek-chat # 换模型只改这一行。deepseek-flash 是「思考型」模型：它先吐一大段 reasoning，
+    # 这段也要算进 max_tokens；问它「代码写得怎样」这类需要琢磨的问题时，思考会把额度吃光、
+    # 正文一个字都吐不出来（流正常结束但 finish_reason=length）。页面助手追求快而稳，用 chat。
   temperature: 0.7
-  max_tokens: 8192            # 单次回复上限（含思考 token）。8192 是给「万一用回思考型模型」留的余量
-  max_history: 12              # 每次带给模型的历史轮数（不含本页正文）
-  max_page_chars: 32000        # 页面正文上限（字符）。超长文章取「开头 60% + 结尾 35%」，中间部分只把小节标题给模型
+  max_tokens: 8192 # 单次回复上限（含思考 token）。8192 是给「万一用回思考型模型」留的余量
+  max_history: 12 # 每次带给模型的历史轮数（不含本页正文）
+  max_page_chars: 32000 # 页面正文上限（字符）。超长文章取「开头 60% + 结尾 35%」，中间部分只把小节标题给模型
   storage_key: ai_chat_history_v1
-  panel_width: 460              # 面板宽度（需求 440-500px）
+  panel_width: 460 # 面板宽度（需求 440-500px）
   panel_height: 640
-  panel_right: 88              # 面板右边缘离屏幕右边的距离（避开按钮列）
-  timeout_ms: 10000            # 超过这么久还没吐出第一个字就提示「请求超时」（毫秒）
+  panel_right: 88 # 面板右边缘离屏幕右边的距离（避开按钮列）
+  timeout_ms: 10000 # 超过这么久还没吐出第一个字就提示「请求超时」（毫秒）
   welcome: 你好，我是这个页面的 AI 助手。可以帮你总结当前页面、解释名词、回答关于本页的问题。
   first_question: 请用中文总结这个页面的内容：先用一句话概括，再列 3-5 条要点。
   system_prompt: |

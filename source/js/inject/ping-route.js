@@ -20,6 +20,7 @@
  *
  * 【可调参数】改调用处传入的 opts（见 inject/ping-route-boot.js）或这里的 DEFAULTS。
  *
+ * 【加载方式】本文件在 inject.head 中以 defer 加载；defer 保证它晚于 boot 脚本、且不阻塞 HTML 解析。
  * 【回滚】删掉本文件，并去掉 _config.fomalhaut.yml 里引用 boot 脚本的那一行。
  * ============================================================================ */
 (function () {

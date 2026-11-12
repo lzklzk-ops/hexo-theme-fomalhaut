@@ -15,12 +15,10 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           rs.forEach(function (r) { r.unregister() })
         })
       } else {
-        navigator.serviceWorker.register('/sw.js').then(function () {
-          if (localStorage.getItem('install') !== 'true') {
-            localStorage.setItem('install', 'true')
-            location.reload()
-          }
-        })
+        // 首次访问不强制 reload；注册放到页面空闲时，避免多等一轮 HTML。
+        var registerSW = function () { navigator.serviceWorker.register('/sw.js').catch(function () {}) }
+        if (window.requestIdleCallback) requestIdleCallback(registerSW, { timeout: 3000 })
+        else window.addEventListener('load', registerSW, { once: true })
       }
     }
 

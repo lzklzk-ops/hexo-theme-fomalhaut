@@ -6,10 +6,7 @@ comments: false
 
 <div class="gallery-group-main">
 
-
-
-{% galleryGroup '背景专区' '收藏的一些的背景与壁纸，分辨率很高' '/box/gallery/wallpaper/' https://picsum.photos/id/1016/1200/675 %}
-
+{% galleryGroup '拍照留恋之地' '感觉自己拍的好的照片全在这里了' '/box/gallery/wallpaper/' '/assets/pictrue/p1.jpg' %}
 
 <!-- {% galleryGroup '搜图神器' '放大用户搜图在日常工作图的效率，成为图神必备' http://www.soutushenqi.com/ https://pic.imgdb.cn/item/63312f9316f2c2beb1736dbe.jpg %}
 

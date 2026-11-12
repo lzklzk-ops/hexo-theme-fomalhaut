@@ -3,7 +3,9 @@
  * ----------------------------------------------------------------------------
  * 本文件由 _config.fomalhaut.yml 的 inject.head 段抽出（2026-10-03 屎山重构）：
  *   原位置 _config.fomalhaut.yml:1453-1485，原来是内联的 <script id="rightMenuStateBoot">。
- *   配置里仍是同步 <script src>（没有加 defer），所以执行时机与内联时完全一样。
+ *   配置里使用 defer：保持 DOMContentLoaded 初始化顺序，同时不阻塞 head 解析。
+ *   首屏仅需尽早设置 html[data-rm]，defer 脚本在文档解析完成后、DOMContentLoaded 前执行，
+ *   仍能在右侧工具栏首次交互前完成状态同步。
  * ----------------------------------------------------------------------------
  * ========================================================================== */
 
@@ -36,5 +38,11 @@
   }
   document.addEventListener("pjax:complete", function () { apply(); wrap(); });
   function boot() { wrap(); apply(); }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
+  /* defer 脚本可能在 readyState=interactive 时执行；等 DOMContentLoaded，
+     确保底部的 cursor.js 已先定义 changeMouseMode，再安装包装器。 */
+  if (document.readyState === "loading" || document.readyState === "interactive") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
 })();

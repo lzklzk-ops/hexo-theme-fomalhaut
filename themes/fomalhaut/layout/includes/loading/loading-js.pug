@@ -1,16 +1,24 @@
 //- script.
-script(async).
+script.
+  // 加载层只服务于首帧，不应等待字体、统计或第三方 CDN。
   var preloader = {
-    endLoading: () => {
+    endLoading: function () {
       document.body.style.overflow = 'auto';
-      document.getElementById('loading-box').classList.add("loaded")
+      var box = document.getElementById('loading-box');
+      if (box) box.classList.add('loaded');
     },
-    initLoading: () => {
+    initLoading: function () {
       document.body.style.overflow = '';
-      document.getElementById('loading-box').classList.remove("loaded")
-
+      var box = document.getElementById('loading-box');
+      if (box) box.classList.remove('loaded');
     }
+  };
+  // DOM 已经开始渲染就解除遮罩，网络异常时最多再等 2.5 秒。
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', preloader.endLoading, { once: true });
+  } else {
+    preloader.endLoading();
   }
-  window.addEventListener('load',preloader.endLoading())
-  setTimeout(function(){preloader.endLoading();}, 5000);
-  document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})
+  setTimeout(preloader.endLoading, 2500);
+  var loadingBox = document.getElementById('loading-box');
+  if (loadingBox) loadingBox.addEventListener('click', preloader.endLoading);

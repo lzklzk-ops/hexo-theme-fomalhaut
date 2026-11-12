@@ -1,20 +1,20 @@
 div
-  script(src=url_for(theme.asset.utils))
-  script(src=url_for(theme.asset.main))
+  script(defer src=url_for(theme.asset.utils))
+  script(defer src=url_for(theme.asset.main))
 
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
 
   if theme.medium_zoom
-    script(src=url_for(theme.asset.medium_zoom))
+    script(defer src=url_for(theme.asset.medium_zoom))
   else if theme.fancybox
-    script(src=url_for(theme.asset.fancybox_v4))
+    script(defer src=url_for(theme.asset.fancybox_v4))
 
   if theme.instantpage
-    script(src=url_for(theme.asset.instantpage), type='module')
+    script(defer src=url_for(theme.asset.instantpage), type='module')
 
   if theme.lazyload.enable
-    script(src=url_for(theme.asset.lazyload))
+    script(defer src=url_for(theme.asset.lazyload))
 
   if theme.snackbar.enable
     script(src=url_for(theme.asset.snackbar))

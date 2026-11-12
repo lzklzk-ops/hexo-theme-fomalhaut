@@ -1,17 +1,86 @@
 /* ============================================================================
- * music-autoplay.js —— 八音盒进入页面后自动播放
+ * music-autoplay.js —— 进入网站时播放一小段八音盒音乐
  * ----------------------------------------------------------------------------
- * APlayer/Meting 已通过 data-autoplay=true 请求自动播放；浏览器若拦截有声
- * 自动播放，本文件会在访客第一次点击、触摸或按键后再次尝试，不影响其他页面。
- * 同时监听 pjax:complete，确保从站内其他页面进入八音盒时也能启动。
+ * 普通页面使用一个临时隐藏 audio，在首屏加载完成后立即销毁，避免音乐
+ * 在页面稳定后继续占用网络和播放焦点。八音盒页面仍由 APlayer/Meting
+ * 自己管理，不创建第二个音频。
  * ========================================================================== */
 (function () {
   'use strict';
 
   var selector = '#aplayer-tao-playlist';
+  var previewUrl = 'https://api.injahow.cn/meting/?server=netease&type=url&id=411314656';
   var retryTimers = [];
   var gestureBound = false;
   var observedAudio = null;
+  var previewAudio = null;
+  var previewStopTimer = null;
+  var previewGestureBound = false;
+
+  function isMusicPage() {
+    return !!document.querySelector(selector);
+  }
+
+  function stopPreview() {
+    if (previewStopTimer) {
+      clearTimeout(previewStopTimer);
+      previewStopTimer = null;
+    }
+    if (!previewAudio) return;
+    try {
+      previewAudio.pause();
+      previewAudio.removeAttribute('src');
+      previewAudio.load();
+      previewAudio.remove();
+    } catch (e) {}
+    previewAudio = null;
+    if (previewGestureBound) {
+      previewGestureBound = false;
+      document.removeEventListener('pointerdown', playPreview, true);
+      document.removeEventListener('touchstart', playPreview, true);
+      document.removeEventListener('keydown', playPreview, true);
+    }
+  }
+
+  function playPreview() {
+    if (!previewAudio) return;
+    try {
+      var result = previewAudio.play();
+      if (result && typeof result.catch === 'function') result.catch(function () {});
+    } catch (e) {}
+  }
+
+  function startPreview(fromPjax) {
+    stopPreview();
+    if (isMusicPage()) return;
+
+    var audio = document.createElement('audio');
+    audio.preload = 'auto';
+    audio.autoplay = true;
+    audio.volume = 0.4;
+    audio.setAttribute('aria-hidden', 'true');
+    audio.style.display = 'none';
+    audio.src = previewUrl;
+    previewAudio = audio;
+    document.body.appendChild(audio);
+
+    // 浏览器允许有声自动播放时立即开始；被策略拦截则等访客第一次操作。
+    playPreview();
+    previewGestureBound = true;
+    document.addEventListener('pointerdown', playPreview, true);
+    document.addEventListener('touchstart', playPreview, true);
+    document.addEventListener('keydown', playPreview, true);
+
+    // window.load 是首屏所有资源完成的明确边界；超时只作为异常网络下的兜底。
+    var stop = function () { stopPreview(); };
+    if (document.readyState === 'complete') {
+      // PJAX 换页没有新的 window.load，给音频一个短暂的过渡窗口。
+      previewStopTimer = setTimeout(stop, fromPjax ? 1200 : 0);
+    } else {
+      window.addEventListener('load', stop, { once: true });
+      previewStopTimer = setTimeout(stop, 12000);
+    }
+  }
 
   function getPlayer() {
     var el = document.querySelector(selector);
@@ -81,10 +150,11 @@
     retryTimers = [];
   }
 
-  function arm() {
+  function arm(fromPjax) {
+    startPreview(!!fromPjax);
     clearRetries();
     observedAudio = null;
-    if (!document.querySelector(selector)) {
+    if (!isMusicPage()) {
       unbindGesture();
       return;
     }
@@ -99,7 +169,8 @@
     });
   }
 
-  document.addEventListener('pjax:complete', arm);
+  document.addEventListener('pjax:send', stopPreview);
+  document.addEventListener('pjax:complete', function () { arm(true); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arm, { once: true });
   else arm();
 })();

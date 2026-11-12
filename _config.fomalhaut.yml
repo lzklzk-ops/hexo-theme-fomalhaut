@@ -107,13 +107,13 @@ disable_top_img: false
 
 # The banner image of home page
 # 在线二次元横屏图：偏暗色、高对比、战斗感；服务端会随机返回动漫壁纸。
-index_img: /assets/pictrue/p1.jpg
+index_img: "https://www.loliapi.com/acg/pc/?slot=home-banner-20261112"
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /assets/pictrue/p2.jpg
+default_top_img: "https://www.loliapi.com/acg/pc/?slot=page-banner-20261112"
 
 # The banner image of archive page
-archive_img: /assets/pictrue/p3.jpg
+archive_img: "https://www.loliapi.com/acg/pc/?slot=archive-banner-20261112"
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
@@ -1191,7 +1191,7 @@ inject:
     - <style id="transPercent"></style> # 透明度调节
     - <style id="bgFilterParam"></style> # 背景滤镜
     - <span id="fps" aria-hidden="true"></span> # 帧率检测（纯装饰，读屏不播报）
-    - <style id="defineBg">:root{--default-bg:url(/assets/pictrue/p4.jpg);--darkmode-bg:url(/assets/pictrue/p5.jpg);--mobileday-bg:url(/assets/pictrue/p8.jpg);--mobilenight-bg:url(/assets/pictrue/p7.jpg);}</style> # 默认背景：使用站内图片，避免随机图接口变慢；不同模式仍保持独立图片
+    - <style id="defineBg">:root{--default-bg:url(https://www.loliapi.com/acg/pc/?slot=site-default-bg-20261112);--darkmode-bg:url(https://www.loliapi.com/acg/pc/?slot=site-dark-bg-20261112);--mobileday-bg:url(https://www.loliapi.com/acg/pc/?slot=site-mobile-day-20261112);--mobilenight-bg:url(https://www.loliapi.com/acg/pc/?slot=site-mobile-night-20261112);}</style> # 默认背景：按用途分配独立随机请求，避免与文章封面复用同一张图
     # 注意：夜间那张的地址必须与 source/js/modules/settings.js 的 resetBg_() 逐字一致 ——
     # 运行时覆盖前浏览器已按这里的值下过一份，URL 不一致就会同一张图下两份。
     - <style id="menu_shadow"></style> # 菜单发光样式
@@ -1348,7 +1348,7 @@ inject:
     - <script defer src="/js/author-status.js"></script> # 侧栏头像状态胶囊：按时间/节假日自动切换（放假/上班/下班/睡觉）
     - <script defer src="/js/stats.js?v=20261005"></script> # 文章统计页（/tags/）：emoji 标题拆成分节头 + 三张 echarts 跟随主题色/明暗模式
     - <script defer src="/js/footer-music.js?v=20261005"></script> # 页脚「猜你想看」右下空位补一条「听点音乐」→ /life/music/（八音盒）
-    - <script defer src="/js/inject/music-autoplay.js?v=20261112"></script> # 八音盒进入后自动播放；浏览器拦截时在首次操作后启动
+    - <script defer src="/js/inject/music-autoplay.js?v=20261113"></script> # 进入网站时播放到首屏加载完成；浏览器拦截时在首次操作后启动
     - <script defer src="/js/pjax-guard.js?v=20261005"></script> # 修 pjax 选择器不匹配：/tags/ 图表容器 id 导致换页退回整页刷新 + 加载遮罩一直转圈
     - <script defer src="/js/inject/search-lazy.js?v=20261011b"></script> # Algolia 搜索按需加载：空闲预取 + 点开才执行（省 88KB 压缩流量 / 277KB 解析，见 source/js/inject/search-lazy.js）
     - <script src="/js/inject/scroll-gap-fix.js?v=20261011"></script> # 锚点跳转补偿：常驻顶栏留 70px

@@ -752,10 +752,10 @@ function resetBg_() {
   var el = document.getElementById("defineBg");
   if (!el) return;
   el.innerText = `:root{
-    --default-bg: url(/assets/pictrue/p4.jpg);
-    --darkmode-bg:url(/assets/pictrue/p5.jpg);
-    --mobileday-bg: url(/assets/pictrue/p8.jpg);
-    --mobilenight-bg: url(/assets/pictrue/p7.jpg);
+    --default-bg: url(https://www.loliapi.com/acg/pc/?slot=site-default-bg-20261112);
+    --darkmode-bg:url(https://www.loliapi.com/acg/pc/?slot=site-dark-bg-20261112);
+    --mobileday-bg: url(https://www.loliapi.com/acg/pc/?slot=site-mobile-day-20261112);
+    --mobilenight-bg: url(https://www.loliapi.com/acg/pc/?slot=site-mobile-night-20261112);
   }`;
 }
 

@@ -623,7 +623,7 @@ facebook_comments:
 # https://github.com/imaegoo/twikoo
 twikoo:
   # 必须替换为你实际部署的 Twikoo 服务地址，否则前端会显示 status 0。
-  envId: https://twikoo-orcin-seven.vercel.app
+  envId: https://twikoo-777-c7ac.vercel.app
   region:
   visitor: false
   option:

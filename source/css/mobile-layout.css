@@ -1,0 +1,118 @@
+/* 站点级手机布局：集中覆盖主题与站点增强模块的窄屏尺寸。 */
+@media screen and (max-width: 768px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  #page-header #nav,
+  #page-header.nav-fixed #nav,
+  #page-header.nav-visible #nav,
+  #page-header.not-top-img #nav {
+    height: 56px;
+    min-height: 56px;
+    padding: 0 12px !important;
+  }
+  #nav > #blog_name { max-width: calc(100% - 168px); }
+  #nav > #blog_name > #site-name { max-width: 100%; font-size: 16px; }
+  #nav > #blog_name > #site-name::before { font-size: 15px; }
+  #nav > #menus { margin-left: auto; }
+  #nav > #menus > #nav-right { gap: 2px; }
+  #nav #nav-right > #search-button > a.search,
+  #nav #nav-right > #meihua-button,
+  #nav #nav-right > #nightmode-button,
+  #nav #nav-right > #toggle-menu > a {
+    width: 38px;
+    min-width: 38px;
+    height: 40px;
+    min-height: 40px;
+    border-radius: 10px;
+  }
+  #nav #nav-right > #search-button > a.search span { display: none; }
+  #nav #nav-right > #meihua-button svg,
+  #nav #nav-right > #nightmode-button svg,
+  #nav #nav-right > #search-button svg { width: 20px !important; height: 20px !important; }
+
+  #page-header #site-info { padding: 0 18px; }
+  #page-header #site-title { font-size: clamp(28px, 9vw, 42px); line-height: 1.15; }
+  #page-header .site-subtitle { max-width: 90vw; font-size: 13px; line-height: 1.7; }
+  #page-header .site-social-icons { gap: 6px; }
+
+  #body-wrap { width: 100%; }
+  #content-inner.layout { width: 100%; max-width: none; padding: 18px 12px 0; }
+  #content-inner.layout > div:not(.aside-content),
+  #content-inner.layout > main { min-width: 0; }
+  #page { margin: 0; padding: 0; }
+  #article-container { min-width: 0; font-size: 15px; line-height: 1.85; }
+  #article-container h1 { font-size: 1.62rem; line-height: 1.35; }
+  #article-container h2 { font-size: 1.38rem; line-height: 1.4; }
+  #article-container h3 { font-size: 1.2rem; }
+  #article-container pre { max-width: 100%; overflow-x: auto; border-radius: 10px; }
+  #article-container table { display: block; max-width: 100%; overflow-x: auto; white-space: nowrap; }
+  #article-container img,
+  #article-container video,
+  #article-container iframe { max-width: 100%; height: auto; }
+  #article-container .video-container { margin-inline: 0; }
+  #article-container .gallery-group-main { gap: 9px; }
+  #article-container figure.gallery-group { width: calc(50% - 5px) !important; }
+  #article-container .gallery-group .site-card-text { font-size: 12px; }
+
+  #recent-posts > .recent-post-item { min-height: 0; margin-bottom: 14px; border-radius: 14px; }
+  #recent-posts > .recent-post-item .post_cover { width: 100%; height: 180px; }
+  #recent-posts > .recent-post-item .recent-post-info { padding: 14px 15px 16px; }
+  #recent-posts > .recent-post-item .article-title { font-size: 1.05rem; line-height: 1.5; }
+  #recent-posts > .recent-post-item .content { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .layout > .recent-posts,
+  .layout > #recent-posts { min-width: 0; }
+  .card-widget { border-radius: 14px; }
+  .card-widget .card-content { padding: 14px; }
+  .site-card-group { gap: 10px; }
+  .site-card { width: calc(50% - 5px) !important; margin: 0 !important; }
+  .site-card .img { border-radius: 12px !important; }
+
+  #post-info { padding-inline: 2px; }
+  #post-info .post-title { font-size: clamp(1.45rem, 7vw, 2rem); line-height: 1.35; }
+  .post-copyright { padding: 12px !important; }
+  .post-copyright .post-copyright__type { word-break: break-all; }
+
+  #footer-wrap { padding-inline: 16px; }
+  #footer-wrap .copyright { font-size: 13px; line-height: 1.7; }
+  #footer-wrap .footer_custom_text { max-width: 100%; overflow-wrap: anywhere; }
+
+  #rightside { right: 10px; bottom: 14px; }
+  #rightside > div > button,
+  #rightside > div > a { width: 38px; height: 38px; }
+  #ai-chat-panel { right: 8px !important; left: 8px !important; width: auto !important; max-width: none !important; height: min(78vh, 620px) !important; }
+  #winbox { max-width: calc(100vw - 16px) !important; }
+
+  .census { width: 100%; }
+  .census-kpi { min-width: 0; }
+  .census-kpi__num { overflow: hidden; text-overflow: ellipsis; }
+  .census-card { overflow-x: hidden; }
+  .census-chart--map { height: 360px; }
+
+  .ar-overview,
+  .ar-year { max-width: 100%; }
+  #archive.ar-ready .ar-cards { padding-inline: 4px; }
+  #archive.ar-ready .article-sort-item.ar-card { width: min(100%, 296px); }
+}
+
+@media screen and (max-width: 420px) {
+  #content-inner.layout { padding-inline: 10px; }
+  #nav > #blog_name { max-width: calc(100% - 154px); }
+  #nav #nav-right > #search-button > a.search,
+  #nav #nav-right > #meihua-button,
+  #nav #nav-right > #nightmode-button,
+  #nav #nav-right > #toggle-menu > a { width: 34px; min-width: 34px; }
+  #nav #nav-right > #meihua-button,
+  #nav #nav-right > #nightmode-button { display: none; }
+  #recent-posts > .recent-post-item .post_cover { height: 150px; }
+  #article-container figure.gallery-group { width: 100% !important; }
+  .site-card { width: 100% !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #recent-posts > .recent-post-item,
+  .site-card,
+  .census-month__bar,
+  .census-rank__bar { transition: none !important; }
+}

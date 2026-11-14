@@ -1211,6 +1211,7 @@ inject:
     # 手风琴二级菜单 / 极光底色 / 深色适配，配色全部由 --theme-color 派生。
     # 回滚：删掉这一行即可（配置备份 bak/20261007-mobile-drawer/before/_config.fomalhaut.yml）
     - <link rel="stylesheet" href="/css/mobile-drawer.css?v=20261008"> # 改这个文件记得把 ?v= 一起提版本，否则手机端会吃缓存
+    - <link rel="stylesheet" href="/css/mobile-layout.css?v=20261114-1"> # 站点级手机布局：导航、文章、卡片与窄屏溢出
     # ── 头像呼吸灯跟随主题色（同名 @keyframes 覆盖，不改主题源码）─────────────────
     # source/css/avatar-glow.css：把 custom.css:1442-1470 写死的 #9ff2d2 / #39c5bb
     # 换成从 --theme-color 派生；电脑端作者卡与手机抽屉头像共用同一套动画。

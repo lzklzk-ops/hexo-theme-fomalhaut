@@ -99,7 +99,7 @@ favicon:
 
 # Avatar (頭像)
 avatar:
-  img: /assets/avatar.webp
+  img: /assets/avatar-20261113.jpeg
   effect: false
 
 # Disable all banner image
@@ -1348,7 +1348,6 @@ inject:
     - <script defer src="/js/author-status.js"></script> # 侧栏头像状态胶囊：按时间/节假日自动切换（放假/上班/下班/睡觉）
     - <script defer src="/js/stats.js?v=20261005"></script> # 文章统计页（/tags/）：emoji 标题拆成分节头 + 三张 echarts 跟随主题色/明暗模式
     - <script defer src="/js/footer-music.js?v=20261005"></script> # 页脚「猜你想看」右下空位补一条「听点音乐」→ /life/music/（八音盒）
-    - <script defer src="/js/inject/music-autoplay.js?v=20261113"></script> # 进入网站时播放到首屏加载完成；浏览器拦截时在首次操作后启动
     - <script defer src="/js/pjax-guard.js?v=20261005"></script> # 修 pjax 选择器不匹配：/tags/ 图表容器 id 导致换页退回整页刷新 + 加载遮罩一直转圈
     - <script defer src="/js/inject/search-lazy.js?v=20261011b"></script> # Algolia 搜索按需加载：空闲预取 + 点开才执行（省 88KB 压缩流量 / 277KB 解析，见 source/js/inject/search-lazy.js）
     - <script src="/js/inject/scroll-gap-fix.js?v=20261011"></script> # 锚点跳转补偿：常驻顶栏留 70px

@@ -24,6 +24,46 @@ script.
     scrollRestoration: false
   })
 
+  function setPersistentMusicMode(compact) {
+    const player = window.__persistentMusicPlayer
+    if (!player) return
+
+    let closeButton = document.getElementById('persistent-music-close')
+    if (!compact) {
+      player.classList.remove('aplayer-narrow')
+      player.removeAttribute('style')
+      if (closeButton) closeButton.remove()
+      return
+    }
+
+    player.classList.add('aplayer-narrow')
+    Object.assign(player.style, {
+      position: 'fixed', bottom: '16px', right: '16px', width: '66px',
+      margin: '0', zIndex: '1000'
+    })
+
+    if (closeButton) return
+    closeButton = document.createElement('button')
+    closeButton.id = 'persistent-music-close'
+    closeButton.type = 'button'
+    closeButton.textContent = '×'
+    closeButton.title = '关闭音乐播放器'
+    closeButton.setAttribute('aria-label', '关闭音乐播放器')
+    Object.assign(closeButton.style, {
+      position: 'fixed', right: '12px', bottom: '72px', width: '26px', height: '26px',
+      border: '0', borderRadius: '50%', background: '#222', color: '#fff',
+      fontSize: '20px', lineHeight: '24px', cursor: 'pointer', zIndex: '1001'
+    })
+    closeButton.addEventListener('click', function () {
+      const instance = (window.aplayers || []).find(ap => ap && ap.options && ap.options.container === player)
+      if (instance) instance.destroy()
+      player.remove()
+      window.__persistentMusicPlayer = null
+      closeButton.remove()
+    })
+    document.body.appendChild(closeButton)
+  }
+
   document.addEventListener('pjax:send', function () {
 
     // removeEventListener scroll 
@@ -38,12 +78,23 @@ script.
     typeof preloader === 'object' && preloader.initLoading()
     document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
     
+    let persistentPlayer = window.__persistentMusicPlayer || document.querySelector('#aplayer-tao-playlist[data-persist-pjax="true"]')
+    const persistentInstance = persistentPlayer && (window.aplayers || []).find(ap => ap && ap.options && ap.options.container === persistentPlayer)
+    if (!persistentInstance) persistentPlayer = null
+    else window.__persistentMusicPlayer = persistentPlayer
+
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
-        if (!window.aplayers[i].options.fixed) {
+        const container = window.aplayers[i].options && window.aplayers[i].options.container
+        if (container !== persistentPlayer && !window.aplayers[i].options.fixed) {
           window.aplayers[i].destroy()
         }
       }
+    }
+
+    if (persistentPlayer) {
+      document.body.appendChild(persistentPlayer)
+      setPersistentMusicMode(true)
     }
 
     typeof typed === 'object' && typed.destroy()
@@ -77,7 +128,19 @@ script.
     // baidu analytics
     typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
 
-    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+    const persistentPlayer = window.__persistentMusicPlayer
+    if (persistentPlayer) {
+      const pageMarker = Array.from(document.querySelectorAll('#aplayer-tao-playlist[data-persist-pjax="true"]'))
+        .find(player => player !== persistentPlayer)
+      if (pageMarker) {
+        pageMarker.replaceWith(persistentPlayer)
+        setPersistentMusicMode(false)
+      } else {
+        setPersistentMusicMode(true)
+      }
+    } else {
+      typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+    }
 
     // prismjs
     typeof Prism === 'object' && Prism.highlightAll()
